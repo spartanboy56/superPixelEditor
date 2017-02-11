@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 package Model;
+=======
+package com.habim.ImageCanvas;
+>>>>>>> added 2 new model files
 
 import javafx.scene.paint.Color;
 
