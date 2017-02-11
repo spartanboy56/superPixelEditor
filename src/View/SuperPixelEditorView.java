@@ -33,6 +33,7 @@ public class SuperPixelEditorView extends Application {
 
     colorPickerLayout.setBackground(new Background(new BackgroundFill(Color.GRAY, null, null)));
     colorPickerLayout.getChildren().addAll(colorPicker);
+
     colorPickerStage.setTitle("Color Picker");
     colorPickerStage.setScene(colorPickerScene);
 
