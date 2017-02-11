@@ -6,9 +6,8 @@
 package Model;
 
 /**
- *
  * @author Andrew
  */
 public class SuperPixelEditorModel {
-    
+
 }
