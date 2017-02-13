@@ -48,11 +48,13 @@ public class SuperPixelEditorView extends Application {
     Scene newWindowScene = new Scene(newWindowLayout, 620, 480);
     Button btnNewWindow = new Button("Open a window with this color");
     Button btnColorReset = new Button("Reset Window Color");
-    Button btn = new Button("Color Picker");
+    Button btnColorPicker = new Button("Color Picker");
 
     newWindowStage.setScene(newWindowScene);
     newWindowStage.setTitle("");
     //Create menu bar
+    StackPane stackPaneMenuBar = new StackPane();
+    stackPaneMenuBar.alignmentProperty().setValue(Pos.TOP_CENTER);
     MenuBar menuBar = new MenuBar();
     //Creates menus
     Menu menuFile = new Menu("File");
@@ -65,15 +67,22 @@ public class SuperPixelEditorView extends Application {
     //Edit menu items
     MenuItem undoItem = new MenuItem("Undo");
     MenuItem redoItem = new MenuItem("Redo");
+    MenuItem copyItem = new MenuItem("Copy");
+    MenuItem pasteItem = new MenuItem("Paste");
     //Help menu items
     MenuItem controlsItem = new MenuItem("Controls");
     MenuItem aboutItem = new MenuItem("About");
-    //Adds menu items to the menus
-    menuFile.getItems().addAll(openItem, saveItem, saveAsItem);
-    menuEdit.getItems().addAll(undoItem, redoItem);
-    menuHelp.getItems().addAll(controlsItem, aboutItem);
     //Adds all the menus to the menu bar
     menuBar.getMenus().addAll(menuFile, menuEdit, menuHelp);
+    //Adds menu items to the menus
+    menuFile.getItems().addAll(openItem, saveItem, saveAsItem);
+    menuEdit.getItems().addAll(undoItem, redoItem, copyItem, pasteItem);
+    menuHelp.getItems().addAll(controlsItem, aboutItem);
+    //Shows menus
+    menuFile.show();
+    menuEdit.show();
+    menuHelp.show();
+    //Creates color picker and color picker window
     Stage colorPickerStage = new Stage();
     VBox colorPickerLayout = new VBox();
     Scene colorPickerScene = new Scene(colorPickerLayout, 300, 150);
@@ -87,8 +96,10 @@ public class SuperPixelEditorView extends Application {
     colorPickerStage.setTitle("Color Picker");
     colorPickerStage.setScene(colorPickerScene);
 
-    //Popup window
+    //Buttons - TODO: Find a better, nicer looking way to layout the buttons
     HBox hbButtons = new HBox();
+    hbButtons.alignmentProperty().setValue(Pos.CENTER);
+    //Popup window
     Stage popupStage = new Stage();
     popupStage.setTitle("Popup Dialog");
     StackPane popupLayout = new StackPane();
@@ -125,7 +136,7 @@ public class SuperPixelEditorView extends Application {
       }
     });
 
-    btn.setOnAction(new EventHandler<ActionEvent>() {
+    btnColorPicker.setOnAction(new EventHandler<ActionEvent>() {
       @Override
       public void handle(ActionEvent event) {
         colorPickerStage.show();
@@ -153,11 +164,12 @@ public class SuperPixelEditorView extends Application {
     });
 
     StackPane root = new StackPane();
-    root.getChildren().addAll(btn);
-    hbButtons.getChildren().add(btn);
+    root.getChildren().addAll(btnColorPicker);
+    hbButtons.getChildren().add(btnColorPicker);
     hbButtons.getChildren().add(saveBtn);
     hbButtons.getChildren().add(loadBtn);
-    root.getChildren().add(hbButtons);
+    stackPaneMenuBar.getChildren().addAll(menuBar);
+    root.getChildren().addAll(hbButtons, stackPaneMenuBar);
 
     Scene scene = new Scene(root, 400, 250);
 
