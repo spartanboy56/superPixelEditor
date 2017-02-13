@@ -5,12 +5,19 @@
  */
 package View;
 
+import Controller.ColorPaletteController;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -20,10 +27,16 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+
 /**
  * @author Andrew
  */
 public class SuperPixelEditorView extends Application {
+
 
   @Override
   public void start(Stage primaryStage) {
@@ -37,9 +50,28 @@ public class SuperPixelEditorView extends Application {
 
     newWindowStage.setScene(newWindowScene);
     newWindowStage.setTitle("");
-
-
-    //color picker window
+   //Create menu bar
+        MenuBar menuBar = new MenuBar();
+        //Creates menus
+        Menu menuFile = new Menu("File");
+        Menu menuEdit = new Menu("Edit");
+        Menu menuHelp = new Menu("Help");
+        //File menu items
+        MenuItem openItem = new MenuItem("Open");
+        MenuItem saveItem = new MenuItem("Save");
+        MenuItem saveAsItem = new MenuItem("Save As");
+        //Edit menu items
+        MenuItem undoItem = new MenuItem("Undo");
+        MenuItem redoItem = new MenuItem("Redo");
+        //Help menu items
+        MenuItem controlsItem = new MenuItem("Controls");
+        MenuItem aboutItem = new MenuItem("About");
+        //Adds menu items to the menus
+        menuFile.getItems().addAll(openItem,saveItem,saveAsItem);
+        menuEdit.getItems().addAll(undoItem,redoItem);
+        menuHelp.getItems().addAll(controlsItem,aboutItem);
+        //Adds all the menus to the menu bar
+        menuBar.getMenus().addAll(menuFile,menuEdit,menuHelp);
     Stage colorPickerStage = new Stage();
     VBox colorPickerLayout = new VBox();
     Scene colorPickerScene = new Scene(colorPickerLayout, 300, 150);
@@ -97,9 +129,34 @@ public class SuperPixelEditorView extends Application {
       }
     });
 
+    Button saveBtn = new Button();
+    saveBtn.setText("Save Custom Colors");
+    saveBtn.setOnAction(new EventHandler<ActionEvent>() {
+      @Override
+      public void handle(ActionEvent event) {
+        ColorPaletteController.saveColorPalette(colorPicker);
+      }
+
+    });
+
+    Button loadBtn = new Button();
+    loadBtn.setText("Load Custom Colors");
+    loadBtn.setOnAction(new EventHandler<ActionEvent>() {
+      @Override
+      public void handle(ActionEvent event) {
+        ColorPaletteController.loadColorPalette(colorPicker);
+      }
+
+    });
+
     StackPane root = new StackPane();
     root.getChildren().addAll(btn);
-    Scene scene = new Scene(root, 300, 250);
+    hbButtons.getChildren().add(btn);
+    hbButtons.getChildren().add(saveBtn);
+    hbButtons.getChildren().add(loadBtn);
+    root.getChildren().add(hbButtons);
+
+    Scene scene = new Scene(root, 400, 250);
 
     primaryStage.setTitle("Super Pixel Art Editor");
     primaryStage.setScene(scene);
