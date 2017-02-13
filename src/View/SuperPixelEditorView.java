@@ -169,7 +169,7 @@ public class SuperPixelEditorView extends Application {
     hbButtons.getChildren().add(saveBtn);
     hbButtons.getChildren().add(loadBtn);
     stackPaneMenuBar.getChildren().addAll(menuBar);
-    root.getChildren().addAll(hbButtons, stackPaneMenuBar);
+    root.getChildren().addAll(stackPaneMenuBar, hbButtons);
 
     Scene scene = new Scene(root, 400, 250);
 
