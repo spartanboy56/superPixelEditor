@@ -24,11 +24,11 @@ public class ColorPaletteController {
     try {
 //      pw = new PrintWriter(new File("resources/custom_palette"));
       pw = new PrintWriter(fileChooser.showSaveDialog(saveFileStage));
-      for (Color color: customColors)
+      for (Color color : customColors)
         pw.println(String.valueOf(color.getRed()) + " " +
-            String.valueOf(color.getGreen()) + " " +
-            String.valueOf(color.getBlue()) + " " +
-            String.valueOf(color.getOpacity()));
+                String.valueOf(color.getGreen()) + " " +
+                String.valueOf(color.getBlue()) + " " +
+                String.valueOf(color.getOpacity()));
     } catch (FileNotFoundException e) {
       e.printStackTrace();
     } finally {
@@ -47,12 +47,11 @@ public class ColorPaletteController {
     try {
 //      scanner = new Scanner(new File("resources/custom_palette"));
       scanner = new Scanner(fileChooser.showOpenDialog(openFileStage));
-      while (scanner.hasNextLine())
-      {
+      while (scanner.hasNextLine()) {
         String[] colorParamsStr = scanner.nextLine().split(" ");
         double[] colorParams = Arrays.stream(colorParamsStr)
-          .mapToDouble(Double::parseDouble)
-          .toArray();
+                .mapToDouble(Double::parseDouble)
+                .toArray();
         colorPicker.getCustomColors().add(new Color(colorParams[0], colorParams[1], colorParams[2], colorParams[3]));
       }
     } catch (FileNotFoundException e) {

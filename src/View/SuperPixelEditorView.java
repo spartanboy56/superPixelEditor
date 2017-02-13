@@ -31,6 +31,7 @@ import java.io.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+
 import javafx.scene.layout.HBox;
 
 /**
@@ -51,28 +52,28 @@ public class SuperPixelEditorView extends Application {
 
     newWindowStage.setScene(newWindowScene);
     newWindowStage.setTitle("");
-   //Create menu bar
-        MenuBar menuBar = new MenuBar();
-        //Creates menus
-        Menu menuFile = new Menu("File");
-        Menu menuEdit = new Menu("Edit");
-        Menu menuHelp = new Menu("Help");
-        //File menu items
-        MenuItem openItem = new MenuItem("Open");
-        MenuItem saveItem = new MenuItem("Save");
-        MenuItem saveAsItem = new MenuItem("Save As");
-        //Edit menu items
-        MenuItem undoItem = new MenuItem("Undo");
-        MenuItem redoItem = new MenuItem("Redo");
-        //Help menu items
-        MenuItem controlsItem = new MenuItem("Controls");
-        MenuItem aboutItem = new MenuItem("About");
-        //Adds menu items to the menus
-        menuFile.getItems().addAll(openItem,saveItem,saveAsItem);
-        menuEdit.getItems().addAll(undoItem,redoItem);
-        menuHelp.getItems().addAll(controlsItem,aboutItem);
-        //Adds all the menus to the menu bar
-        menuBar.getMenus().addAll(menuFile,menuEdit,menuHelp);
+    //Create menu bar
+    MenuBar menuBar = new MenuBar();
+    //Creates menus
+    Menu menuFile = new Menu("File");
+    Menu menuEdit = new Menu("Edit");
+    Menu menuHelp = new Menu("Help");
+    //File menu items
+    MenuItem openItem = new MenuItem("Open");
+    MenuItem saveItem = new MenuItem("Save");
+    MenuItem saveAsItem = new MenuItem("Save As");
+    //Edit menu items
+    MenuItem undoItem = new MenuItem("Undo");
+    MenuItem redoItem = new MenuItem("Redo");
+    //Help menu items
+    MenuItem controlsItem = new MenuItem("Controls");
+    MenuItem aboutItem = new MenuItem("About");
+    //Adds menu items to the menus
+    menuFile.getItems().addAll(openItem, saveItem, saveAsItem);
+    menuEdit.getItems().addAll(undoItem, redoItem);
+    menuHelp.getItems().addAll(controlsItem, aboutItem);
+    //Adds all the menus to the menu bar
+    menuBar.getMenus().addAll(menuFile, menuEdit, menuHelp);
     Stage colorPickerStage = new Stage();
     VBox colorPickerLayout = new VBox();
     Scene colorPickerScene = new Scene(colorPickerLayout, 300, 150);
