@@ -31,6 +31,7 @@ import java.io.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import javafx.scene.layout.HBox;
 
 /**
  * @author Andrew
@@ -86,6 +87,7 @@ public class SuperPixelEditorView extends Application {
     colorPickerStage.setScene(colorPickerScene);
 
     //Popup window
+    HBox hbButtons = new HBox();
     Stage popupStage = new Stage();
     popupStage.setTitle("Popup Dialog");
     StackPane popupLayout = new StackPane();
