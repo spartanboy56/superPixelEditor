@@ -20,7 +20,7 @@ public class ColorPaletteController {
     FileChooser fileChooser = new FileChooser();
     Stage saveFileStage = new Stage();
     if (recentSaveFileDir == null) {
-      recentSaveFileDir = GET_RECENT_SAVED_DIR();
+      recentSaveFileDir = getRecentSavedDir();
     }
 
     List<Color> customColors = colorPicker.getCustomColors();
@@ -54,7 +54,7 @@ public class ColorPaletteController {
     FileChooser fileChooser = new FileChooser();
     Stage openFileStage = new Stage();
     if (recentSaveFileDir == null) {
-      recentSaveFileDir = GET_RECENT_SAVED_DIR();
+      recentSaveFileDir = getRecentSavedDir();
     }
 
     List<Color> customColors = colorPicker.getCustomColors();
@@ -113,12 +113,22 @@ public class ColorPaletteController {
   }
 
   // Setters
-  public static void SET_RECENT_SAVED_DIR(String sd) {
-    recentSaveFileDir = sd;
+  public static void setRecentSavedDir(String sd) {
+		PrintWriter pw = null;
+  	try {
+			pw = new PrintWriter(new File("recources/config"));
+			pw.write(sd);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			if (pw != null) {
+				pw.close();
+			}
+		}
   }
 
   // Getters
-  public static String GET_RECENT_SAVED_DIR() {
+  public static String getRecentSavedDir() {
     Scanner sc = null;
     try {
       sc = new Scanner(new File("resources/config"));
