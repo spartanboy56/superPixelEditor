@@ -3,15 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package View;
+package com.rlearning.view;
 
-import Controller.ColorPaletteController;
+import com.rlearning.controller.ColorPaletteController;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+<<<<<<< master:src/View/SuperPixelEditorView.java
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -25,15 +27,13 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+=======
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
+>>>>>>> Re-organizing code folders and implementing gradle build mechanism:src/main/java/com/rlearning/view/SuperPixelEditorView.java
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-import java.io.*;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
-import javafx.scene.layout.HBox;
 
 /**
  * @author Andrew

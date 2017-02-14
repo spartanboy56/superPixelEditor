@@ -1,5 +1,9 @@
 // TODO - Rename the package to suit with the whole Java skeleton thingy on github.
+<<<<<<< master:src/Model/CanvasModel.java
 package Model;
+=======
+package com.rlearning.model;
+>>>>>>> Re-organizing code folders and implementing gradle build mechanism:src/main/java/com/rlearning/model/CanvasModel.java
 
 import javafx.scene.*;
 import javafx.scene.paint.*;

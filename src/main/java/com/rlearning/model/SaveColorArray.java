@@ -1,4 +1,8 @@
+<<<<<<< master:src/Model/SaveColorArray.java
 package Model;
+=======
+package com.rlearning.model;
+>>>>>>> Re-organizing code folders and implementing gradle build mechanism:src/main/java/com/rlearning/model/SaveColorArray.java
 
 import javafx.scene.paint.Color;
 import java.io.BufferedWriter;
