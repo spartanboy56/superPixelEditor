@@ -114,17 +114,17 @@ public class ColorPaletteController {
 
   // Setters
   public static void setRecentSavedDir(String sd) {
-		PrintWriter pw = null;
-  	try {
-			pw = new PrintWriter(new File("recources/config"));
-			pw.write(sd);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} finally {
-			if (pw != null) {
-				pw.close();
-			}
-		}
+    PrintWriter pw = null;
+    try {
+      pw = new PrintWriter(new File("recources/config"));
+      pw.write(sd);
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    } finally {
+      if (pw != null) {
+        pw.close();
+      }
+    }
   }
 
   // Getters
