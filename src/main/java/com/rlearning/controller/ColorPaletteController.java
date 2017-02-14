@@ -1,13 +1,11 @@
-package Controller;
+package com.rlearning.controller;
 
 import javafx.scene.control.ColorPicker;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.List;

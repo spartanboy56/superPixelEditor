@@ -1,0 +1,27 @@
+buildscript {
+    apply from: './version.gradle'
+
+    dependencies {
+        classpath group: 'de.dynamicfiles.projects.gradle.plugins', name: 'javafx-gradle-plugin', version: "${gradle.javafxGradlePluginVersion}"
+    }
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+apply plugin: 'javafx-gradle-plugin'
+
+jfx {
+    mainClass = 'com.rlearning.view.SuperPixelEditorView'
+    vendor = 'RLearningGroup'
+}

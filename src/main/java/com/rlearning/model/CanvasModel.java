@@ -1,5 +1,5 @@
 // TODO - Rename the package to suit with the whole Java skeleton thingy on github.
-package com.habim.ImageCanvas;
+package com.rlearning.model;
 
 import javafx.scene.*;
 import javafx.scene.paint.*;
