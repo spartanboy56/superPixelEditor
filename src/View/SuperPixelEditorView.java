@@ -19,6 +19,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.ColorPicker;
+import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.StackPane;
@@ -53,6 +54,10 @@ public class SuperPixelEditorView extends Application {
     newWindowStage.setTitle("");
    //Create menu bar
         MenuBar menuBar = new MenuBar();
+        //Creates menu separator
+        SeparatorMenuItem separatorMenuItem1 = new SeparatorMenuItem();
+        SeparatorMenuItem separatorMenuItem2 = new SeparatorMenuItem();
+        SeparatorMenuItem separatorMenuItem3 = new SeparatorMenuItem();
         //Creates menus
         Menu menuFile = new Menu("File");
         Menu menuEdit = new Menu("Edit");
@@ -61,6 +66,9 @@ public class SuperPixelEditorView extends Application {
         MenuItem openItem = new MenuItem("Open");
         MenuItem saveItem = new MenuItem("Save");
         MenuItem saveAsItem = new MenuItem("Save As");
+        MenuItem saveColorItem = new MenuItem("Save Color Pallete");
+        MenuItem loadColorItem = new MenuItem("Load Color Pallete");
+        MenuItem optionsItem = new MenuItem("Options...");
         //Edit menu items
         MenuItem undoItem = new MenuItem("Undo");
         MenuItem redoItem = new MenuItem("Redo");
@@ -68,11 +76,12 @@ public class SuperPixelEditorView extends Application {
         MenuItem controlsItem = new MenuItem("Controls");
         MenuItem aboutItem = new MenuItem("About");
         //Adds menu items to the menus
-        menuFile.getItems().addAll(openItem,saveItem,saveAsItem);
+        menuFile.getItems().addAll(openItem,separatorMenuItem1,saveItem,saveAsItem,separatorMenuItem2,saveColorItem,loadColorItem,separatorMenuItem3,optionsItem);
         menuEdit.getItems().addAll(undoItem,redoItem);
         menuHelp.getItems().addAll(controlsItem,aboutItem);
         //Adds all the menus to the menu bar
         menuBar.getMenus().addAll(menuFile,menuEdit,menuHelp);
+
     Stage colorPickerStage = new Stage();
     VBox colorPickerLayout = new VBox();
     Scene colorPickerScene = new Scene(colorPickerLayout, 300, 150);
@@ -151,12 +160,36 @@ public class SuperPixelEditorView extends Application {
 
     });
 
+    // Menu Item Functions
+
+    saveColorItem.setOnAction(new EventHandler<ActionEvent>(){
+    	@Override
+    	public void handle(ActionEvent event){
+    		ColorPaletteController.saveColorPalette(colorPicker);
+    	}
+    });
+
+    loadColorItem.setOnAction(new EventHandler<ActionEvent>() {
+      @Override
+      public void handle(ActionEvent event) {
+        ColorPaletteController.loadColorPalette(colorPicker);
+      }
+
+    });
+
+    // Still using a StackPane as root for the main Scene, as I'm unsure if there's a reason to keep it like that instead of using a BorderPane as root.
     StackPane root = new StackPane();
-    root.getChildren().addAll(btn);
+    // BorderPane might be better suited for this design, as it allows more precise positioning of UI elements.
+    BorderPane contentPane = new BorderPane();
+    contentPane.setTop(menuBar);
+    contentPane.setCenter(hbButtons);
+
+
     hbButtons.getChildren().add(btn);
     hbButtons.getChildren().add(saveBtn);
     hbButtons.getChildren().add(loadBtn);
-    root.getChildren().add(hbButtons);
+
+    root.getChildren().addAll(contentPane);
 
     Scene scene = new Scene(root, 400, 250);
 
