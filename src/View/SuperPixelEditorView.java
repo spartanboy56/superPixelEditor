@@ -66,8 +66,8 @@ public class SuperPixelEditorView extends Application {
         MenuItem openItem = new MenuItem("Open");
         MenuItem saveItem = new MenuItem("Save");
         MenuItem saveAsItem = new MenuItem("Save As");
-        MenuItem saveColorItem = new MenuItem("Save Color Pallette");
-        MenuItem loadColorItem = new MenuItem("Load Color Pallette");
+        MenuItem saveColorItem = new MenuItem("Save Color Palette");
+        MenuItem loadColorItem = new MenuItem("Load Color Palette");
         MenuItem optionsItem = new MenuItem("Options...");
         //Edit menu items
         MenuItem undoItem = new MenuItem("Undo");
