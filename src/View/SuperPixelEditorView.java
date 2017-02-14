@@ -58,6 +58,7 @@ public class SuperPixelEditorView extends Application {
         SeparatorMenuItem separatorMenuItem1 = new SeparatorMenuItem();
         SeparatorMenuItem separatorMenuItem2 = new SeparatorMenuItem();
         SeparatorMenuItem separatorMenuItem3 = new SeparatorMenuItem();
+        SeparatorMenuItem separatorMenuItem4 = new SeparatorMenuItem();
         //Creates menus
         Menu menuFile = new Menu("File");
         Menu menuEdit = new Menu("Edit");
@@ -69,6 +70,7 @@ public class SuperPixelEditorView extends Application {
         MenuItem saveColorItem = new MenuItem("Save Color Palette");
         MenuItem loadColorItem = new MenuItem("Load Color Palette");
         MenuItem optionsItem = new MenuItem("Options...");
+        MenuItem exitItem = new MenuItem("Exit");
         //Edit menu items
         MenuItem undoItem = new MenuItem("Undo");
         MenuItem redoItem = new MenuItem("Redo");
@@ -76,7 +78,7 @@ public class SuperPixelEditorView extends Application {
         MenuItem controlsItem = new MenuItem("Controls");
         MenuItem aboutItem = new MenuItem("About");
         //Adds menu items to the menus
-        menuFile.getItems().addAll(openItem,separatorMenuItem1,saveItem,saveAsItem,separatorMenuItem2,saveColorItem,loadColorItem,separatorMenuItem3,optionsItem);
+        menuFile.getItems().addAll(openItem,separatorMenuItem1,saveItem,saveAsItem,separatorMenuItem2,saveColorItem,loadColorItem,separatorMenuItem3,optionsItem,separatorMenuItem4,exitItem);
         menuEdit.getItems().addAll(undoItem,redoItem);
         menuHelp.getItems().addAll(controlsItem,aboutItem);
         //Adds all the menus to the menu bar
@@ -173,6 +175,14 @@ public class SuperPixelEditorView extends Application {
       @Override
       public void handle(ActionEvent event) {
         ColorPaletteController.loadColorPalette(colorPicker);
+      }
+
+    });
+    
+    exitItem.setOnAction(new EventHandler<ActionEvent>() {
+      @Override
+      public void handle(ActionEvent event) {
+        System.exit(0);
       }
 
     });
