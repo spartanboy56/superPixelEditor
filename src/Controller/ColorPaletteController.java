@@ -32,9 +32,8 @@ public class ColorPaletteController {
       File fileToSave = fileChooser.showSaveDialog(saveFileStage);
       if (fileToSave != null) {
         pw = new PrintWriter(fileToSave);
-        // The problem starts here
         recentSaveFileDir = fileToSave.getParent();
-        SAVE_TO_CONFIG();
+        saveToConfig();
         for (Color color : customColors)
           pw.println(String.valueOf(color.getRed()) + " " +
               String.valueOf(color.getGreen()) + " " +
@@ -91,7 +90,7 @@ public class ColorPaletteController {
     }
   }
 
-  public static void SAVE_TO_CONFIG() {
+  public static void saveToConfig() {
     try {
       fw = new FileWriter(CONFIG_FILE);
       bw = new BufferedWriter(fw);
