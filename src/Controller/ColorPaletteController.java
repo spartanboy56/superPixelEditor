@@ -19,17 +19,17 @@ public class ColorPaletteController {
     
     List<Color> customColors = colorPicker.getCustomColors();
     
-    PrintWriter pw = null;
+    PrintWriter printWriter = null;
     try {
-//      pw = new PrintWriter(new File("resources/custom_palette"));
+//      printWriter = new PrintWriter(new File("resources/custom_palette"));
       File fileChoice = fileChooser.showSaveDialog(saveFileStage);
       
-      if(fileChoice == null) {
+      if (fileChoice == null) {
         // handle null choice gracefully
       } else {
-        pw = new PrintWriter(fileChoice);
-        for (Color color: customColors)
-          pw.println(String.valueOf(color.getRed()) + " " +
+        printWriter = new PrintWriter(fileChoice);
+        for (Color color : customColors)
+          printWriter.println(String.valueOf(color.getRed()) + " " +
                   String.valueOf(color.getGreen()) + " " +
                   String.valueOf(color.getBlue()) + " " +
                   String.valueOf(color.getOpacity()));
@@ -37,8 +37,8 @@ public class ColorPaletteController {
     } catch (FileNotFoundException e) {
       e.printStackTrace();
     } finally {
-      if(pw != null) {
-        pw.close();
+      if (printWriter != null) {
+        printWriter.close();
       }
     }
   }
@@ -55,23 +55,23 @@ public class ColorPaletteController {
 //      scanner = new Scanner(new File("resources/custom_palette"));
       File fileChoice = fileChooser.showSaveDialog(openFileStage);
       
-      if(fileChoice == null) {
+      if (fileChoice == null) {
         // handle null choice gracefully
       } else {
         scanner = new Scanner(fileChoice);
-        while (scanner.hasNextLine())
-        {
+        while (scanner.hasNextLine()) {
           String[] colorParamsStr = scanner.nextLine().split(" ");
           double[] colorParams = Arrays.stream(colorParamsStr)
                   .mapToDouble(Double::parseDouble)
                   .toArray();
-          colorPicker.getCustomColors().add(new Color(colorParams[0], colorParams[1], colorParams[2], colorParams[3]));
+          colorPicker.getCustomColors().add(new Color(colorParams[0], colorParams[1], colorParams[2],
+                  colorParams[3]));
         }
       }
     } catch (FileNotFoundException e) {
       e.printStackTrace();
     } finally {
-      if(scanner != null) {
+      if (scanner != null) {
         scanner.close();
       }
     }
