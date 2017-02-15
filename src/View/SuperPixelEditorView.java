@@ -39,6 +39,15 @@ import javafx.scene.layout.HBox;
  */
 public class SuperPixelEditorView extends Application {
 
+  private static Color color;
+
+  public static Color getColor() {
+    return color;
+  }
+
+  private static void setColor(Color color) {
+    SuperPixelEditorView.color = color;
+  }
 
   @Override
   public void start(Stage primaryStage) {
@@ -113,6 +122,7 @@ public class SuperPixelEditorView extends Application {
     colorPicker.setOnAction(new EventHandler<ActionEvent>() {
       @Override
       public void handle(ActionEvent event) {
+        setColor(colorPicker.getValue());
         newWindowLayout.setBackground(new Background(new BackgroundFill(colorPicker.getValue(), null, null)));
       }
     });
@@ -120,8 +130,9 @@ public class SuperPixelEditorView extends Application {
     btnColorReset.setOnAction(new EventHandler<ActionEvent>() {
       @Override
       public void handle(ActionEvent event) {
-        newWindowLayout.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
+        setColor(Color.WHITE);
         colorPicker.setValue(Color.WHITE);
+        newWindowLayout.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
       }
     });
 
