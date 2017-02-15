@@ -1,11 +1,16 @@
-package Controller;
+package com.rlearning.controller;
 
 import javafx.scene.control.ColorPicker;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+<<<<<<< HEAD:src/Controller/ColorPaletteController.java
 import java.io.*;
+=======
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+>>>>>>> refs/heads/pr/16:src/main/java/com/rlearning/controller/ColorPaletteController.java
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
