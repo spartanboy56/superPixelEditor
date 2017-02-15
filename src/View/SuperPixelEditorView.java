@@ -11,34 +11,24 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-import java.io.*;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
-
-import javafx.scene.layout.HBox;
-
 /**
  * @author Andrew
  */
 public class SuperPixelEditorView extends Application {
+  private static Color color;
 
+  public static Color getColor() {
+    return color;
+  }
+
+  private static void setColor(Color color) {
+    SuperPixelEditorView.color = color;
+  }
 
   @Override
   public void start(Stage primaryStage) {
@@ -114,6 +104,7 @@ public class SuperPixelEditorView extends Application {
     colorPicker.setOnAction(new EventHandler<ActionEvent>() {
       @Override
       public void handle(ActionEvent event) {
+        setColor(colorPicker.getValue());
         newWindowLayout.setBackground(new Background(new BackgroundFill(colorPicker.getValue(), null, null)));
       }
     });
@@ -121,6 +112,7 @@ public class SuperPixelEditorView extends Application {
     btnColorReset.setOnAction(new EventHandler<ActionEvent>() {
       @Override
       public void handle(ActionEvent event) {
+        setColor(Color.WHITE);
         newWindowLayout.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
         colorPicker.setValue(Color.WHITE);
       }

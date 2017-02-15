@@ -1,13 +1,16 @@
 package Model;
 
-import javafx.scene.*;
-import javafx.scene.paint.*;
-import javafx.scene.canvas.*;
+import Controller.SuperPixelEditorController;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 
 public class CanvasModel {
-
+  private Color color = SuperPixelEditorController.currentColorSelected();
   // Group - container to hold the whole canvas.
   private Group CanvasGroup = null;
   private Scene CanvasScene = null;
