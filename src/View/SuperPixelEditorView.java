@@ -9,6 +9,7 @@ import Controller.ColorPaletteController;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -51,8 +52,9 @@ public class SuperPixelEditorView extends Application {
 
     newWindowStage.setScene(newWindowScene);
     newWindowStage.setTitle("");
-   //Create menu bar
+        //Create menu bar
         MenuBar menuBar = new MenuBar();
+        menuBar.setStyle("-fx-background-color: white;");
         //Creates menus
         Menu menuFile = new Menu("File");
         Menu menuEdit = new Menu("Edit");
@@ -88,6 +90,8 @@ public class SuperPixelEditorView extends Application {
 
     //Popup window
     HBox hbButtons = new HBox();
+    hbButtons.setSpacing(10.0);
+    hbButtons.setAlignment(Pos.CENTER);
     Stage popupStage = new Stage();
     popupStage.setTitle("Popup Dialog");
     StackPane popupLayout = new StackPane();
@@ -150,13 +154,15 @@ public class SuperPixelEditorView extends Application {
       }
 
     });
-
-    StackPane root = new StackPane();
-    root.getChildren().addAll(btn);
+    BorderPane root = new BorderPane();
+    root.setTop(menuBar);
+    //color picker
     hbButtons.getChildren().add(btn);
+    //Save custom colors
     hbButtons.getChildren().add(saveBtn);
+    //Load custom colors
     hbButtons.getChildren().add(loadBtn);
-    root.getChildren().add(hbButtons);
+    root.setCenter(hbButtons);
 
     Scene scene = new Scene(root, 400, 250);
 
