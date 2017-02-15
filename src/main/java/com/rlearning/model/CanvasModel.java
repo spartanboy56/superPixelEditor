@@ -1,6 +1,6 @@
 // TODO - Rename the package to suit with the whole Java skeleton thingy on github.
 
-package main.java.com.rlearning.model;
+package model;
 import javafx.scene.*;
 import javafx.scene.paint.*;
 import javafx.scene.canvas.*;

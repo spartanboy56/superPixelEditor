@@ -1,4 +1,4 @@
-package main.java.com.rlearning.controller;
+package controller;
 
 import javafx.scene.control.ColorPicker;
 import javafx.scene.paint.Color;

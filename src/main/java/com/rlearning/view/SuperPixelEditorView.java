@@ -3,11 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main.java.com.rlearning.view;
+package view;
 
-import main.java.com.rlearning.controller.ColorPaletteController;
-import main.java.com.rlearning.view.SuperPixelEditorView;
-
+import controller.ColorPaletteController;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
