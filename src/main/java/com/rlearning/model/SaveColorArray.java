@@ -1,4 +1,4 @@
-package com.rlearning.model;
+package main.java.com.rlearning.model;
 import javafx.scene.paint.Color;
 
 import java.io.BufferedWriter;
