@@ -1,3 +1,5 @@
+// Buildscript to fetch the appropriate javafx gradle version
+
 buildscript {
     apply from: './version.gradle'
 
@@ -13,6 +15,9 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
+apply plugin: 'findbugs'
+apply plugin: 'pmd'
+apply plugin: 'checkstyle'
 
 repositories {
     mavenLocal()
@@ -21,7 +26,44 @@ repositories {
 
 apply plugin: 'javafx-gradle-plugin'
 
+// The following 3 tasks are of absolute necessary since everyone are beginners
+// It's a must to run after coding is done to avoid basic code issues and design implementations errors.
+// please find more details here : http://continuousdev.com/2015/08/checkstyle-vs-pmd-vs-findbugs/
+// The output can be viewed under build/reports as a html file.
+
+// To run checkstyle : gradle checkstyleMain
+checkstyleMain {
+    ignoreFailures = false
+    configFile = new File(rootDir, 'checkstyle/rlearn-checkstyle.xml')
+}
+
+// To run checkstyle : gradle findbugsMain
+findbugs {
+    ignoreFailures = true
+    sourceSets = [sourceSets.main]
+    effort = "max"
+}
+
+// To run checkstyle : gradle pmdMain
+pmd {
+    ignoreFailures = true
+    ruleSets = [
+            "java-basic",
+            "java-braces",
+            "java-design",
+            "java-unnecessary",
+            "java-unusedcode"
+    ]
+}
+
 jfx {
     mainClass = 'com.rlearning.view.SuperPixelEditorView'
     vendor = 'RLearningGroup'
+}
+
+tasks.withType(FindBugs) {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
 }
