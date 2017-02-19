@@ -99,4 +99,23 @@ public class CanvasModel {
 	public void SET_IMAGE_VIEW(ImageView iv) {
 		this.CanvasImageView = iv;
 	}
+        
+        
+        //Method to reset canvas
+        public void ResetCanvas(){
+                this.CanvasObject = new Canvas(600,400); // TODO: replace values with variables for default canvas size or make a popup asking for canvas size
+        }
+        
+        //Method to reset the graphics context
+        public void ResetGraphicsContext() {
+            this.CanvasGraphics = CanvasObject.getGraphicsContext2D();
+        }
+        
+        // Method to reset the Canvas Model
+            // Wasn't sure whether to reset all the variables so I played it safe and just reset the canvas and the graphics context
+            // I have a feeling that the Image and Image viewer would need to be reset but wasn't sure what to do with it as it isn't inpmemented yet
+        public void ResetCanvasModel(){
+            ResetCanvas();
+            ResetGraphicsContext();
+        }
 }
