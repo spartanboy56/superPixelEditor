@@ -39,6 +39,7 @@ javadoc/
 # Gradle:
 # .idea/gradle.xml
 # .idea/libraries
+.gradle
 
 # Mongo Explorer plugin:
 # .idea/mongoSettings.xml
