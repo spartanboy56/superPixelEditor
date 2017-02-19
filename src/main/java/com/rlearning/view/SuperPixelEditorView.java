@@ -5,7 +5,7 @@
  */
 package com.rlearning.view;
 
-import com.rlearning.controller.ColorPaletteController;
+import main.java.com.rlearning.controller.ColorPaletteController;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
