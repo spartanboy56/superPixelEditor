@@ -1,8 +1,5 @@
-<<<<<<< master
-=======
 // Buildscript to fetch the appropriate javafx gradle version
 
->>>>>>> Reorganizing the folders / implementiong new build mechanisms Updating the .gitignore file and removing unwanted folders from repo
 buildscript {
     apply from: './version.gradle'
 
@@ -18,12 +15,9 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
-<<<<<<< master
-=======
 apply plugin: 'findbugs'
 apply plugin: 'pmd'
 apply plugin: 'checkstyle'
->>>>>>> Reorganizing the folders / implementiong new build mechanisms Updating the .gitignore file and removing unwanted folders from repo
 
 repositories {
     mavenLocal()
@@ -32,11 +26,6 @@ repositories {
 
 apply plugin: 'javafx-gradle-plugin'
 
-<<<<<<< master
-jfx {
-    mainClass = 'com.rlearning.view.SuperPixelEditorView'
-    vendor = 'RLearningGroup'
-=======
 // The following 3 tasks are of absolute necessary since everyone are beginners
 // It's a must to run after coding is done to avoid basic code issues and design implementations errors.
 // please find more details here : http://continuousdev.com/2015/08/checkstyle-vs-pmd-vs-findbugs/
@@ -77,5 +66,4 @@ tasks.withType(FindBugs) {
         xml.enabled = false
         html.enabled = true
     }
->>>>>>> Reorganizing the folders / implementiong new build mechanisms Updating the .gitignore file and removing unwanted folders from repo
 }
