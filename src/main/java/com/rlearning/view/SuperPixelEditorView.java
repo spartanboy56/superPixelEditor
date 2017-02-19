@@ -3,36 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package View;
+package main.java.com.rlearning.view;
 
-import Controller.ColorPaletteController;
-import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import main.java.com.rlearning.controller.CanvasResizeController;
+import main.java.com.rlearning.controller.ColorPaletteController;
+
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.*;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
-import javafx.scene.layout.HBox;
+import java.awt.*;
 
 /**
  * @author Andrew
@@ -49,12 +42,18 @@ public class SuperPixelEditorView extends Application {
     Button btnNewWindow = new Button("Open a window with this color");
     Button btnColorReset = new Button("Reset Window Color");
     Button btn = new Button("Color Picker");
+    double sceneWidth = 400;
+    double sceneHeight = 400;
 
     newWindowStage.setScene(newWindowScene);
     newWindowStage.setTitle("");
-        //Create menu bar
+   //Create menu bar
         MenuBar menuBar = new MenuBar();
-        menuBar.setStyle("-fx-background-color: white;");
+        //Creates menu separator
+        SeparatorMenuItem separatorMenuItem1 = new SeparatorMenuItem();
+        SeparatorMenuItem separatorMenuItem2 = new SeparatorMenuItem();
+        SeparatorMenuItem separatorMenuItem3 = new SeparatorMenuItem();
+        SeparatorMenuItem separatorMenuItem4 = new SeparatorMenuItem();
         //Creates menus
         Menu menuFile = new Menu("File");
         Menu menuEdit = new Menu("Edit");
@@ -63,6 +62,10 @@ public class SuperPixelEditorView extends Application {
         MenuItem openItem = new MenuItem("Open");
         MenuItem saveItem = new MenuItem("Save");
         MenuItem saveAsItem = new MenuItem("Save As");
+        MenuItem saveColorItem = new MenuItem("Save Color Palette");
+        MenuItem loadColorItem = new MenuItem("Load Color Palette");
+        MenuItem optionsItem = new MenuItem("Options...");
+        MenuItem exitItem = new MenuItem("Exit");
         //Edit menu items
         MenuItem undoItem = new MenuItem("Undo");
         MenuItem redoItem = new MenuItem("Redo");
@@ -70,11 +73,12 @@ public class SuperPixelEditorView extends Application {
         MenuItem controlsItem = new MenuItem("Controls");
         MenuItem aboutItem = new MenuItem("About");
         //Adds menu items to the menus
-        menuFile.getItems().addAll(openItem,saveItem,saveAsItem);
+        menuFile.getItems().addAll(openItem,separatorMenuItem1,saveItem,saveAsItem,separatorMenuItem2,saveColorItem,loadColorItem,separatorMenuItem3,optionsItem,separatorMenuItem4,exitItem);
         menuEdit.getItems().addAll(undoItem,redoItem);
         menuHelp.getItems().addAll(controlsItem,aboutItem);
         //Adds all the menus to the menu bar
         menuBar.getMenus().addAll(menuFile,menuEdit,menuHelp);
+
     Stage colorPickerStage = new Stage();
     VBox colorPickerLayout = new VBox();
     Scene colorPickerScene = new Scene(colorPickerLayout, 300, 150);
@@ -90,8 +94,6 @@ public class SuperPixelEditorView extends Application {
 
     //Popup window
     HBox hbButtons = new HBox();
-    hbButtons.setSpacing(10.0);
-    hbButtons.setAlignment(Pos.CENTER);
     Stage popupStage = new Stage();
     popupStage.setTitle("Popup Dialog");
     StackPane popupLayout = new StackPane();
@@ -154,18 +156,51 @@ public class SuperPixelEditorView extends Application {
       }
 
     });
+
+    // Menu Item Functions
+
+    saveColorItem.setOnAction(new EventHandler<ActionEvent>(){
+    	@Override
+    	public void handle(ActionEvent event){
+    		ColorPaletteController.saveColorPalette(colorPicker);
+    	}
+    });
+
+    loadColorItem.setOnAction(new EventHandler<ActionEvent>() {
+      @Override
+      public void handle(ActionEvent event) {
+        ColorPaletteController.loadColorPalette(colorPicker);
+      }
+
+    });
+    
+    exitItem.setOnAction(new EventHandler<ActionEvent>() {
+      @Override
+      public void handle(ActionEvent event) {
+        System.exit(0);
+      }
+
+    });
+
+    // Still using a StackPane as root for the main Scene, as I'm unsure if there's a reason to keep it like that instead of using a BorderPane as root.
     BorderPane root = new BorderPane();
+    // BorderPane might be better suited for this design, as it allows more precise positioning of UI elements.
+
     root.setTop(menuBar);
-    //color picker
-    hbButtons.getChildren().add(btn);
-    //Save custom colors
-    hbButtons.getChildren().add(saveBtn);
-    //Load custom colors
-    hbButtons.getChildren().add(loadBtn);
     root.setCenter(hbButtons);
 
-    Scene scene = new Scene(root, 400, 250);
 
+
+    hbButtons.getChildren().add(btn);
+    hbButtons.getChildren().add(saveBtn);
+    hbButtons.getChildren().add(loadBtn);
+    //canvas is created with the ability to resize with the window. Canvas currently starts just below the buttons
+    CanvasResizeController canvas = new CanvasResizeController();
+    root.getChildren().add(canvas);
+    canvas.heightProperty().bind(root.heightProperty());
+    canvas.widthProperty().bind(root.widthProperty());
+
+    Scene scene = new Scene(root, sceneWidth, sceneHeight);
     primaryStage.setTitle("Super Pixel Art Editor");
     primaryStage.setScene(scene);
     primaryStage.show();
