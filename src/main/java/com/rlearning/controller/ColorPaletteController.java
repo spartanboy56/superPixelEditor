@@ -12,7 +12,6 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
->>>>>>> refs/heads/pr/16:src/main/java/com/rlearning/controller/ColorPaletteController.java
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
