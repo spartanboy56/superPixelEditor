@@ -1,5 +1,9 @@
-package model;
+<<<<<<< HEAD:src/main/java/com/rlearning/model/SaveColorArray.java
+package com.rlearning.model;
+=======
+package Model;
 
+>>>>>>> 9a0f0dc6d42fdd72b73b8b45f1fa39b0890b5b83:src/Model/SaveColorArray.java
 import javafx.scene.paint.Color;
 
 import java.io.BufferedWriter;

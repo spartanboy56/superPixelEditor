@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
+package com.rlearning.view;
 
+import main.java.com.rlearning.controller.ColorPaletteController;
 
-import controller.ColorPaletteController;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -36,6 +36,7 @@ public class SuperPixelEditorView extends Application {
     
     newWindowStage.setScene(newWindowScene);
     newWindowStage.setTitle("");
+<<<<<<< HEAD:src/main/java/com/rlearning/view/SuperPixelEditorView.java
    //Create menu bar
         MenuBar menuBar = new MenuBar();
         //Creates menu separator
@@ -68,6 +69,30 @@ public class SuperPixelEditorView extends Application {
         //Adds all the menus to the menu bar
         menuBar.getMenus().addAll(menuFile,menuEdit,menuHelp);
 
+=======
+    //Create menu bar
+    MenuBar menuBar = new MenuBar();
+    //Creates menus
+    Menu menuFile = new Menu("File");
+    Menu menuEdit = new Menu("Edit");
+    Menu menuHelp = new Menu("Help");
+    //File menu items
+    MenuItem openItem = new MenuItem("Open");
+    MenuItem saveItem = new MenuItem("Save");
+    MenuItem saveAsItem = new MenuItem("Save As");
+    //Edit menu items
+    MenuItem undoItem = new MenuItem("Undo");
+    MenuItem redoItem = new MenuItem("Redo");
+    //Help menu items
+    MenuItem controlsItem = new MenuItem("Controls");
+    MenuItem aboutItem = new MenuItem("About");
+    //Adds menu items to the menus
+    menuFile.getItems().addAll(openItem, saveItem, saveAsItem);
+    menuEdit.getItems().addAll(undoItem, redoItem);
+    menuHelp.getItems().addAll(controlsItem, aboutItem);
+    //Adds all the menus to the menu bar
+    menuBar.getMenus().addAll(menuFile, menuEdit, menuHelp);
+>>>>>>> 9a0f0dc6d42fdd72b73b8b45f1fa39b0890b5b83:src/View/SuperPixelEditorView.java
     Stage colorPickerStage = new Stage();
     VBox colorPickerLayout = new VBox();
     Scene colorPickerScene = new Scene(colorPickerLayout, 300, 150);
@@ -145,6 +170,8 @@ public class SuperPixelEditorView extends Application {
       }
       
     });
+<<<<<<< HEAD:src/main/java/com/rlearning/view/SuperPixelEditorView.java
+
     // Menu Item Functions
 
     saveColorItem.setOnAction(new EventHandler<ActionEvent>(){
@@ -161,7 +188,7 @@ public class SuperPixelEditorView extends Application {
       }
 
     });
-
+    
     exitItem.setOnAction(new EventHandler<ActionEvent>() {
       @Override
       public void handle(ActionEvent event) {
@@ -171,6 +198,9 @@ public class SuperPixelEditorView extends Application {
     });
 
     // Still using a StackPane as root for the main Scene, as I'm unsure if there's a reason to keep it like that instead of using a BorderPane as root.
+=======
+    
+>>>>>>> 9a0f0dc6d42fdd72b73b8b45f1fa39b0890b5b83:src/View/SuperPixelEditorView.java
     StackPane root = new StackPane();
     // BorderPane might be better suited for this design, as it allows more precise positioning of UI elements.
     BorderPane contentPane = new BorderPane();
@@ -181,9 +211,14 @@ public class SuperPixelEditorView extends Application {
     hbButtons.getChildren().add(btn);
     hbButtons.getChildren().add(saveBtn);
     hbButtons.getChildren().add(loadBtn);
+<<<<<<< HEAD:src/main/java/com/rlearning/view/SuperPixelEditorView.java
 
     root.getChildren().addAll(contentPane);
 
+=======
+    root.getChildren().add(hbButtons);
+    
+>>>>>>> 9a0f0dc6d42fdd72b73b8b45f1fa39b0890b5b83:src/View/SuperPixelEditorView.java
     Scene scene = new Scene(root, 400, 250);
     
     primaryStage.setTitle("Super Pixel Art Editor");
