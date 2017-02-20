@@ -38,6 +38,13 @@ public class CanvasModel {
 		this.CanvasObject = new Canvas(CanvasWidth, CanvasHeight);
 		this.CHECK_IMAGE_NULL(image);
 	}
+	// Alternate CreateCanvas to handle calls lacking a backgroundColor argument.
+	public void CreateCanvas(int WindowWidth, int WindowHeight, int CanvasWidth, int CanvasHeight, Image image) {
+		this.CanvasGroup = new Group();
+		this.CanvasScene = new Scene(CanvasGroup, WindowWidth, WindowHeight, Color.WHITE);
+		this.CanvasObject = new Canvas(CanvasWidth, CanvasHeight);
+		this.CHECK_IMAGE_NULL(image);
+	}
 	
 	// Checking if image was sent through the CreateCanvas method.
 	private void CHECK_IMAGE_NULL(Image img) {
