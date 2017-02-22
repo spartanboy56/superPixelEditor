@@ -1,23 +1,20 @@
-<<<<<<< HEAD:src/main/java/com/rlearning/model/CanvasModel.java
-// TODO - Rename the package to suit with the whole Java skeleton thingy on github.
-
-package com.rlearning.model;
-import javafx.scene.*;
-import javafx.scene.paint.*;
-import javafx.scene.canvas.*;
-=======
-package Model;
+package model;
+import controller.SuperPixelEditorController;
 
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
->>>>>>> 9a0f0dc6d42fdd72b73b8b45f1fa39b0890b5b83:src/Model/CanvasModel.java
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 
 public class CanvasModel {
+<<<<<<< HEAD
+  //gets RGB color value from controller which is gotten from view
+  private Color currentViewPixelColor = SuperPixelEditorController.currentViewColorSelected();
+=======
 <<<<<<< HEAD:src/main/java/com/rlearning/model/CanvasModel.java
 	
 	// Group - container to hold the whole canvas.
@@ -35,6 +32,13 @@ public class CanvasModel {
 	public void CreateCanvas(int WindowWidth, int WindowHeight, int CanvasWidth, int CanvasHeight, Color backgroundColor, Image image) {
 		this.CanvasGroup = new Group();
 		this.CanvasScene = new Scene(CanvasGroup, WindowWidth, WindowHeight, backgroundColor);
+		this.CanvasObject = new Canvas(CanvasWidth, CanvasHeight);
+		this.CHECK_IMAGE_NULL(image);
+	}
+	// Alternate CreateCanvas to handle calls lacking a backgroundColor argument.
+	public void CreateCanvas(int WindowWidth, int WindowHeight, int CanvasWidth, int CanvasHeight, Image image) {
+		this.CanvasGroup = new Group();
+		this.CanvasScene = new Scene(CanvasGroup, WindowWidth, WindowHeight, Color.WHITE);
 		this.CanvasObject = new Canvas(CanvasWidth, CanvasHeight);
 		this.CHECK_IMAGE_NULL(image);
 	}
@@ -131,6 +135,7 @@ public class CanvasModel {
         }
 =======
   
+>>>>>>> 6f4a9bfd1fb866b1e12faeec858f33f2b07d3e3e
   // Group - container to hold the whole canvas.
   private Group canvasGroup;
   private Scene canvasScene;
@@ -209,5 +214,4 @@ public class CanvasModel {
   public void setCanvasImageView(ImageView canvasImageView) {
     this.canvasImageView = canvasImageView;
   }
->>>>>>> 9a0f0dc6d42fdd72b73b8b45f1fa39b0890b5b83:src/Model/CanvasModel.java
 }

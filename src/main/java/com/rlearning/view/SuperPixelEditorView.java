@@ -31,7 +31,15 @@ import java.awt.*;
  * @author Andrew
  */
 public class SuperPixelEditorView extends Application {
+  private static Color pixelColor;
 
+  public static Color getPixelColor() {
+    return pixelColor;
+  }
+
+  public static void setPixelColor(Color pixelColor) {
+    SuperPixelEditorView.pixelColor = pixelColor;
+  }
 
   @Override
   public void start(Stage primaryStage) {
@@ -109,6 +117,7 @@ public class SuperPixelEditorView extends Application {
       @Override
       public void handle(ActionEvent event) {
         newWindowLayout.setBackground(new Background(new BackgroundFill(colorPicker.getValue(), null, null)));
+        setPixelColor(colorPicker.getValue());
       }
     });
 
@@ -117,6 +126,7 @@ public class SuperPixelEditorView extends Application {
       public void handle(ActionEvent event) {
         newWindowLayout.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
         colorPicker.setValue(Color.WHITE);
+        setPixelColor(Color.WHITE);
       }
     });
 
@@ -194,13 +204,12 @@ public class SuperPixelEditorView extends Application {
     hbButtons.getChildren().add(btn);
     hbButtons.getChildren().add(saveBtn);
     hbButtons.getChildren().add(loadBtn);
-    //canvas is created with the ability to resize with the window. Canvas currently starts just below the buttons
-    CanvasResizeController canvas = new CanvasResizeController();
-    root.getChildren().add(canvas);
-    canvas.heightProperty().bind(root.heightProperty());
-    canvas.widthProperty().bind(root.widthProperty());
 
-    Scene scene = new Scene(root, sceneWidth, sceneHeight);
+
+    root.getChildren().addAll(contentPane);
+
+    Scene scene = new Scene(root, 400, 250);
+    
     primaryStage.setTitle("Super Pixel Art Editor");
     primaryStage.setScene(scene);
     primaryStage.show();
