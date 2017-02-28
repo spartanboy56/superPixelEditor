@@ -25,7 +25,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.awt.*;
+
 
 /**
  * @author Andrew
@@ -41,8 +41,11 @@ public class SuperPixelEditorView extends Application {
     SuperPixelEditorView.pixelColor = pixelColor;
   }
 
+
   @Override
   public void start(Stage primaryStage) {
+
+
     //new window opens after btnNewWindow is clicked
     Stage newWindowStage = new Stage();
     StackPane newWindowLayout = new StackPane();
@@ -67,6 +70,7 @@ public class SuperPixelEditorView extends Application {
         Menu menuEdit = new Menu("Edit");
         Menu menuHelp = new Menu("Help");
         //File menu items
+        MenuItem newItem = new MenuItem("New");
         MenuItem openItem = new MenuItem("Open");
         MenuItem saveItem = new MenuItem("Save");
         MenuItem saveAsItem = new MenuItem("Save As");
@@ -81,7 +85,7 @@ public class SuperPixelEditorView extends Application {
         MenuItem controlsItem = new MenuItem("Controls");
         MenuItem aboutItem = new MenuItem("About");
         //Adds menu items to the menus
-        menuFile.getItems().addAll(openItem,separatorMenuItem1,saveItem,saveAsItem,separatorMenuItem2,saveColorItem,loadColorItem,separatorMenuItem3,optionsItem,separatorMenuItem4,exitItem);
+        menuFile.getItems().addAll(newItem,openItem,separatorMenuItem1,saveItem,saveAsItem,separatorMenuItem2,saveColorItem,loadColorItem,separatorMenuItem3,optionsItem,separatorMenuItem4,exitItem);
         menuEdit.getItems().addAll(undoItem,redoItem);
         menuHelp.getItems().addAll(controlsItem,aboutItem);
         //Adds all the menus to the menu bar
@@ -99,6 +103,30 @@ public class SuperPixelEditorView extends Application {
 
     colorPickerStage.setTitle("Color Picker");
     colorPickerStage.setScene(colorPickerScene);
+
+    //new canvas window
+    Stage canvasCreateStage = new Stage();
+    canvasCreateStage.setTitle("Canvas size");
+    GridPane canvasCreateLayout = new GridPane();
+    TextField textFieldWidth = new TextField();
+    TextField textFieldHeight = new TextField();
+    textFieldWidth.setPromptText("Width");
+    textFieldHeight.setPromptText("Height");
+    Button createButton = new Button("Create");
+
+    textFieldWidth.setMaxWidth(50);
+    textFieldHeight.setMaxWidth(50);
+
+    canvasCreateLayout.add(textFieldWidth,0,0);
+    canvasCreateLayout.add(textFieldHeight,0,1);
+
+    canvasCreateLayout.add(createButton,0,3);
+    Scene canvasCreateScene = new Scene(canvasCreateLayout,200,100);
+    canvasCreateStage.setScene(canvasCreateScene);
+
+    //Setting up the canvas with a default of 0 height and width
+    Canvas canvas = new Canvas(0,0);
+    GraphicsContext gc = canvas.getGraphicsContext2D();
 
     //Popup window
     HBox hbButtons = new HBox();
@@ -183,7 +211,7 @@ public class SuperPixelEditorView extends Application {
       }
 
     });
-    
+
     exitItem.setOnAction(new EventHandler<ActionEvent>() {
       @Override
       public void handle(ActionEvent event) {
@@ -192,24 +220,51 @@ public class SuperPixelEditorView extends Application {
 
     });
 
-    // Still using a StackPane as root for the main Scene, as I'm unsure if there's a reason to keep it like that instead of using a BorderPane as root.
+    newItem.setOnAction(new EventHandler<ActionEvent>() {
+      @Override
+      public void handle(ActionEvent event) {
+        canvasCreateStage.show();
+        createButton.setOnAction(new EventHandler<ActionEvent>() {
+          @Override
+          public void handle(ActionEvent event) {
+            double canvasWidth = Double.parseDouble(textFieldWidth.getText());
+            double canvasHeight = Double.parseDouble(textFieldHeight.getText());
+
+            BorderPane canvasPane = new BorderPane();
+
+            canvas.setHeight(canvasHeight);
+            canvas.setWidth(canvasWidth);
+
+            gc.setFill(Color.WHITE);
+            gc.fillRect(0, 52, canvasWidth,canvasHeight);
+
+            canvasPane.getChildren().add(canvas);
+            canvasPane.setTop(menuBar);
+            canvasPane.setCenter(hbButtons);
+            Scene canvasScene = new Scene(canvasPane,canvasWidth,canvasHeight);
+            primaryStage.setScene(canvasScene);
+            primaryStage.show();
+            canvasCreateStage.close();
+          }
+        });
+
+      }
+    });
+
+
+
+    //Primary layout
     BorderPane root = new BorderPane();
-    // BorderPane might be better suited for this design, as it allows more precise positioning of UI elements.
 
     root.setTop(menuBar);
     root.setCenter(hbButtons);
-
-
 
     hbButtons.getChildren().add(btn);
     hbButtons.getChildren().add(saveBtn);
     hbButtons.getChildren().add(loadBtn);
 
-
-    root.getChildren().addAll(contentPane);
-
     Scene scene = new Scene(root, 400, 250);
-    
+
     primaryStage.setTitle("Super Pixel Art Editor");
     primaryStage.setScene(scene);
     primaryStage.show();
